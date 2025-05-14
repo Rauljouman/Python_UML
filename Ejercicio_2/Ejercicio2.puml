@@ -1,0 +1,38 @@
+@startuml
+
+package dominio {
+  class Usuario {
+    - nombre: str
+    - correo: str
+    - reservas: List[Reserva]
+    + __init__(nombre: str, correo: str)
+    + agregar_reserva(reserva: Reserva): None
+    + __str__(): str
+  }
+
+  class Sala {
+    - nombre: str
+    - capacidad: int
+    - reservas: List[Reserva]
+    + __init__(nombre: str, capacidad: int)
+    + agregar_reserva(reserva: Reserva): None
+    + __str__(): str
+  }
+
+  class Reserva {
+    - fecha: date
+    - hora_inicio: time
+    - hora_fin: time
+    - usuario: Usuario
+    - sala: Sala
+    + __init__(usuario: Usuario, sala: Sala, fecha: date, hora_inicio: time, hora_fin: time)
+    + __str__(): str
+  }
+}
+
+Usuario "1" --> "0..*" Reserva : hace >
+Sala    "1" --> "0..*" Reserva : ocupa >
+Reserva --> Usuario
+Reserva --> Sala
+
+@enduml

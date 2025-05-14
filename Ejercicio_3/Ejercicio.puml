@@ -1,0 +1,31 @@
+@startuml
+
+class Vehiculo {
+  - marca: str
+  + __init__(marca: str)
+}
+
+class Coche {
+  - modelo: str
+  - motor: Motor
+  + __init__(marca: str, modelo: str, motor: Motor)
+}
+
+class Camion {
+  - capacidad_carga: float
+  - motor: Motor
+  + __init__(marca: str, capacidad_carga: float, motor: Motor)
+}
+
+class Motor {
+  - tipo: str
+  + __init__(tipo: str)
+}
+
+Vehiculo <|-- Coche
+Vehiculo <|-- Camion
+
+Coche *-- Motor
+Camion *-- Motor
+
+@enduml

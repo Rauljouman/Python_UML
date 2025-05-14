@@ -1,0 +1,24 @@
+@startuml
+
+package dominio {
+  class Usuario {
+    - id: int
+    - nombre: String
+    + login(): boolean
+  }
+  class Sala {
+    - numero: int
+    - capacidad: int
+    + reservar(usuario: Usuario)
+  }
+  class Reserva {
+    - fecha: LocalDate
+    - hora: LocalTime
+    + confirmar(): void
+  }
+}
+
+Usuario "1" --> "0..*" Reserva : hace >
+Sala    "1" --> "0..*" Reserva : ocupa >
+
+@enduml
